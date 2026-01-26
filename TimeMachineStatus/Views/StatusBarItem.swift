@@ -124,15 +124,9 @@ struct StatusBarItem: View {
     struct AnimatedIcon: View {
         @State private var isAnimating = false
 
-        private var rotationAnimation: Animation = .linear(duration: 2).repeatForever(autoreverses: false)
-
         var body: some View {
             Image(systemSymbol: .arrowTriangle2Circlepath)
-                .rotationEffect(Angle(degrees: isAnimating ? 360 : 0), anchor: .center)
-                .animation(rotationAnimation, value: isAnimating)
-                .task {
-                    isAnimating = true
-                }
+                .symbolEffect(.rotate.byLayer, options: .repeat(.continuous))
         }
     }
 }
