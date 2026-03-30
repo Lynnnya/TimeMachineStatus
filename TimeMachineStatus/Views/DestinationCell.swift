@@ -108,6 +108,12 @@ struct DestinationCell: View {
             .foregroundStyle(.secondary)
         }
       }
+      //added destinition url info and extracted hostname with regex
+      if dest.networkURL != nil {
+        if let match = dest.networkURL!.firstMatch(of: /@([^\/]+)\//) {
+          Text(match.output.1)
+        }
+      }
       if let bytesUsed = dest.bytesUsed, let bytesAvailable = dest.bytesAvailable {
         let used = bytesUsed.formatted(byteFormat)
         let available = bytesAvailable.formatted(byteFormat)
